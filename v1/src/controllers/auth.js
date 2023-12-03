@@ -10,9 +10,7 @@ class AuthController {
     try {
       const newCustomer = await AuthService.registerCustomer(req.body);
       res.status(201).json(newCustomer);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
+    } catch (error) {}
   }
 
   async loginCustomer(req, res) {
@@ -36,7 +34,6 @@ class AuthController {
       res.status(201).json(newEmployee);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: error.message });
     }
   }
 

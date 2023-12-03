@@ -11,7 +11,15 @@ const {
   AuthRoute,
 } = require("./api/index");
 const sequelize = require("./loaders/sequelize");
-const { Customer, Device, Employee, Repair, Payment } = require("./models");
+const {
+  Customer,
+  Device,
+  Employee,
+  Repair,
+  Payment,
+  Process,
+  SparePart,
+} = require("./models");
 const EmployeeServices = require("./services/employee");
 
 config();
@@ -22,7 +30,7 @@ app.use(cors());
 
 // app.use(helmet());
 // Veritabanını oluştur
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   console.log("Database tables created");
 });
 
@@ -42,6 +50,12 @@ sequelize
   })
   .then(() => {
     return Payment.sync();
+  })
+  .then(() => {
+    return Process.sync();
+  })
+  .then(() => {
+    return SparePart.sync();
   })
   .then(() => {
     console.log("Database connection has been established successfully.");
