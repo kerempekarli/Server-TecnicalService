@@ -1,5 +1,5 @@
 // services/ProcessDetailService.js
-const BaseRepository = require("./repositories/BaseRepository");
+const BaseRepository = require("./repositories/baseRepository");
 const { ProcessDetail } = require("../models");
 const SparePartService = require("./sparePart");
 
