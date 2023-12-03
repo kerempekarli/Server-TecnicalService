@@ -9,6 +9,9 @@ const {
   EmployeeRoute,
   DeviceRoute,
   AuthRoute,
+  ProcessRoute,
+  ProcessDetailRoute,
+  SparePartRoute,
 } = require("./api/index");
 const sequelize = require("./loaders/sequelize");
 const {
@@ -20,7 +23,6 @@ const {
   Process,
   SparePart,
 } = require("./models");
-const EmployeeServices = require("./services/employee");
 
 config();
 
@@ -71,4 +73,7 @@ app.listen(process.env.APP_PORT, async () => {
   app.use("/employees", EmployeeRoute);
   app.use("/devices", DeviceRoute);
   app.use("/auth", AuthRoute);
+  app.use("/process", ProcessRoute);
+  app.use("/process-detail", ProcessDetailRoute);
+  app.use("/spare-part", SparePartRoute);
 });
