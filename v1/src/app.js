@@ -32,7 +32,7 @@ app.use(cors());
 
 // app.use(helmet());
 // Veritabanını oluştur
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   console.log("Database tables created");
 });
 

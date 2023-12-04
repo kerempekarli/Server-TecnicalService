@@ -63,9 +63,11 @@ class DeviceController {
   async createDevice(req, res, next) {
     const deviceData = req.body;
     try {
+      console.log("DEvice data ", deviceData);
       const newDevice = await DeviceService.createDevice(deviceData);
       return res.status(201).json(newDevice);
     } catch (error) {
+      console.log("ERROR BURADA", error);
       next(error);
     }
   }

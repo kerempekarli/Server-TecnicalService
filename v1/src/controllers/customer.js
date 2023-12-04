@@ -1,11 +1,23 @@
 // controllers/customerController.js
 
+const { Customer, Employee } = require("../models");
+
 const CustomerRepository = require("../services/customer");
 
 class CustomerController {
   async getAllCustomers(req, res) {
     try {
-      const customers = await CustomerRepository.getAll();
+      const customers = await CustomerRepository.getAll({
+        include: [
+          {
+            model: Device,
+            include: [
+              Customer,
+              Employee, // Device içindeki Employee ilişkisini çekmek için
+            ],
+          },
+        ],
+      });
       return res.json(customers);
     } catch (error) {
       console.error(error);
@@ -29,6 +41,7 @@ class CustomerController {
 
   async createCustomer(req, res) {
     const customerData = req.body;
+    console.log("CUSTOMER DATA ", customerData);
     try {
       const createdCustomer = await CustomerRepository.create(customerData);
       return res.status(201).json(createdCustomer);

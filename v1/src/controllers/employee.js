@@ -19,6 +19,7 @@ class EmployeeController {
 
   async createEmployee(req, res) {
     const employeeData = req.body;
+    console.log("Create Employee ", employeeData);
     const newEmployee = await this.service.createEmployee(employeeData);
     res.status(201).json(newEmployee);
   }

@@ -1,5 +1,5 @@
 // models/customer.js
-  
+
 const { DataTypes } = require("sequelize");
 const sequelize = require("../loaders/sequelize");
 
@@ -29,11 +29,6 @@ const Customer = sequelize.define("Customer", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  // Diğer özellikleri buraya ekleyebilirsiniz
 });
 
 module.exports = Customer;
