@@ -1,4 +1,3 @@
-// services/ProcessDetailService.js
 const BaseRepository = require("./repositories/baseRepository");
 const { ProcessDetail } = require("../models");
 const SparePartService = require("./sparePart");
@@ -10,9 +9,10 @@ class ProcessDetailService extends BaseRepository {
   }
 
   async createProcessDetail(data) {
-    const newProcessDetail = await this.create(data);
+    console.log("newProcessDetail", data.dataValues);
+    const newProcessDetail = await this.create(data.dataValues);
 
-    if (data.stockID) {
+    if (data.dataValues.stockID) {
       await this.sparePartService.updateSparePartQuantity(
         data.stockID,
         -data.usedQuantity
@@ -23,34 +23,13 @@ class ProcessDetailService extends BaseRepository {
   }
 
   async updateProcessDetail(id, data) {
-    const [numOfAffectedRows] = await this.update(id, data);
-
-    if (numOfAffectedRows === 0) {
-      throw new Error(`ProcessDetail with id ${id} not found`);
-    }
-
-    const updatedProcessDetail = await this.getById(id);
-
-    return updatedProcessDetail;
+    // updateProcessDetailById metodunu çağırarak kod tekrarını önleyelim
+    return this.updateProcessDetailById(id, data);
   }
 
   async deleteProcessDetail(id) {
-    const processDetail = await this.getById(id);
-
-    if (!processDetail) {
-      throw new Error(`ProcessDetail with id ${id} not found`);
-    }
-
-    if (processDetail.stockID) {
-      await this.sparePartService.updateSparePartQuantity(
-        processDetail.stockID,
-        processDetail.usedQuantity
-      );
-    }
-
-    await this.delete(id);
-
-    return { message: "ProcessDetail deleted successfully" };
+    // deleteProcessDetailById metodunu çağırarak kod tekrarını önleyelim
+    return this.deleteProcessDetailById(id);
   }
 
   // Eklenen CRUD metodları
@@ -60,10 +39,6 @@ class ProcessDetailService extends BaseRepository {
 
   async getProcessDetailById(id) {
     return this.getById(id);
-  }
-
-  async createProcessDetail(data) {
-    return this.create(data);
   }
 
   async updateProcessDetailById(id, data) {

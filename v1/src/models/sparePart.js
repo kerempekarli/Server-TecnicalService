@@ -31,6 +31,4 @@ const SparePart = sequelize.define("SparePart", {
   },
 });
 
-
-
 module.exports = SparePart;

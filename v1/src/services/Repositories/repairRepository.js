@@ -1,9 +1,7 @@
-// repositories/repairRepository.js
-const BaseRepository = require("./baseRepository");
-const Repair = require("../../models/repair");
+// // repositories/repairRepository.js
+// const BaseRepository = require("../Repositories/baseRepository");
+// const Repair = require("../../models/repair");
 
-class RepairRepository extends BaseRepository {
-  // Buraya özel metodlar eklenebilir
-}
+// class RepairRepository extends BaseRepository {}
 
-module.exports = new RepairRepository(Repair);
+// module.exports = new RepairRepository(Repair);

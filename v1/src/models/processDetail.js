@@ -27,6 +27,16 @@ const ProcessDetail = sequelize.define("ProcessDetail", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    allowNull: true,
+  },
 });
 
 // Defining associations with other tables

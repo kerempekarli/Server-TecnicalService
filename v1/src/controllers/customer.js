@@ -1,6 +1,6 @@
 // controllers/customerController.js
 
-const { Customer, Employee } = require("../models");
+const { Customer, Employee, Device } = require("../models");
 
 const CustomerRepository = require("../services/customer");
 
@@ -28,7 +28,17 @@ class CustomerController {
   async getCustomerById(req, res) {
     const { id } = req.params;
     try {
-      const customer = await CustomerRepository.getById(id);
+      const customer = await CustomerRepository.getById(id, {
+        include: [
+          {
+            model: Device,
+            include: [
+              Customer,
+              Employee, // Device içindeki Employee ilişkisini çekmek için
+            ],
+          },
+        ],
+      });
       if (!customer) {
         return res.status(404).json({ error: "Customer not found" });
       }

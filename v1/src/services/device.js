@@ -1,4 +1,4 @@
-const BaseRepository = require("./Repositories/baseRepository");
+const BaseRepository = require("./repositories/baseRepository");
 const Device = require("../models/device");
 
 class DeviceService extends BaseRepository {

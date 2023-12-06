@@ -24,9 +24,12 @@ class ProcessController {
   }
 
   async createProcess(req, res) {
+    console.log("ÇALIŞTI");
     const processData = req.body;
     try {
-      const newProcess = await ProcessService.createProcess(processData);
+      const newProcess = await ProcessService.createProcessWithDetails(
+        processData
+      );
       res.json(newProcess);
     } catch (error) {
       res.status(500).json({ error: error.message });

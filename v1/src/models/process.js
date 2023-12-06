@@ -15,6 +15,7 @@ const Process = sequelize.define("Process", {
   startDate: {
     type: DataTypes.DATE,
     allowNull: false,
+    defaultValue: sequelize.literal("CURRENT_TIMESTAMP"), // Otomatik olarak şu anki tarih ve saat değeri alınacak
   },
   endDate: {
     type: DataTypes.DATE,

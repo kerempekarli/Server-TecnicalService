@@ -20,8 +20,15 @@ class BaseRepository {
     return this.model.findByPk(id, queryOptions);
   }
 
-  create(data) {
-    return this.model.create(data);
+  async create(data) {
+    try {
+      const result = await this.model.create(data);
+      return result;
+    } catch (error) {
+      // Hata oluştuğunda burada işlemleri gerçekleştirebilirsiniz
+      console.error("Error creating data:", error);
+      throw error; // Hatanın tekrar fırlatılması, üst katmanlarda bu hatayı ele almak için
+    }
   }
 
   update(id, data) {

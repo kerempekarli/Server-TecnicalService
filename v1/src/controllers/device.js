@@ -28,7 +28,6 @@ class DeviceController {
       if (!device) {
         return res.status(404).json({ error: "Device not found" });
       }
-      console.log(device);
       return res.json(device);
     } catch (error) {
       next(error);
