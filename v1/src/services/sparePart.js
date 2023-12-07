@@ -8,21 +8,40 @@ class SparePartService extends BaseRepository {
   }
 
   async updateSparePartQuantity(stockID, quantityChange) {
-    const sparePart = await this.getById(stockID);
+    try {
+      console.log("SPARE PART DATAS ", {
+        stockID,
+        quantityChange,
+      });
 
-    if (!sparePart) {
-      throw new Error(`SparePart with stockID ${stockID} not found`);
-    }
+      const sparePart = await this.getById(stockID);
 
-    const newQuantity = sparePart.quantity + quantityChange;
+      console.log("BULUNAN PARÇA", sparePart);
 
-    if (newQuantity < 0) {
-      throw new Error(
-        `Insufficient quantity for SparePart with stockID ${stockID}`
+      const newQuantity = sparePart.quantity + quantityChange;
+
+      console.log("new quantity ", newQuantity);
+
+      // Burada yapılan değişiklik: update metodunun dönüş değerini alıyoruz
+      const updatedRows = await this.update(
+        { stockID: stockID },
+        { quantity: newQuantity }
       );
-    }
 
-    return this.update(stockID, { quantity: newQuantity });
+      console.log("Updated Rows: ", updatedRows);
+
+      // Güncelleme işlemi başarılıysa, güncellenmiş veriyi geri dönmek yerine yeniden sorgu yaparak veriyi getirelim
+      if (updatedRows > 0) {
+        const updatedSparePart = await this.getById(stockID);
+        console.log("Updated Spare Part: ", updatedSparePart);
+        return updatedSparePart;
+      } else {
+        throw new Error(`Failed to update SparePart with stockID ${stockID}`);
+      }
+    } catch (error) {
+      console.error("Error updating spare part quantity:", error);
+      throw error;
+    }
   }
 
   async getAllSpareParts() {

@@ -26,6 +26,7 @@ class ProcessController {
   async createProcess(req, res) {
     console.log("ÇALIŞTI");
     const processData = req.body;
+    console.log("İLK GELEN DATA ", processData);
     try {
       const newProcess = await ProcessService.createProcessWithDetails(
         processData

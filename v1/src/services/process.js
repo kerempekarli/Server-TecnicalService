@@ -10,8 +10,8 @@ class ProcessService extends BaseRepository {
 
   async createProcessWithDetails(processData) {
     const newProcess = await this.create(processData);
-    console.log("NewProcess", newProcess);
-    await this.processDetailService.createProcessDetail(newProcess);
+    processData.processID = newProcess.dataValues.processID;
+    await this.processDetailService.createProcessDetail(processData);
 
     return newProcess;
   }

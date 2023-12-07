@@ -9,15 +9,13 @@ class ProcessDetailService extends BaseRepository {
   }
 
   async createProcessDetail(data) {
-    console.log("newProcessDetail", data.dataValues);
-    const newProcessDetail = await this.create(data.dataValues);
+    console.log("newProcessDetail", data);
+    const newProcessDetail = await this.create(data);
 
-    if (data.dataValues.stockID) {
-      await this.sparePartService.updateSparePartQuantity(
-        data.stockID,
-        -data.usedQuantity
-      );
-    }
+    await this.sparePartService.updateSparePartQuantity(
+      data.stockID,
+      -data.usedQuantity
+    );
 
     return newProcessDetail;
   }

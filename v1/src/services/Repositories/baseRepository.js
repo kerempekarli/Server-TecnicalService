@@ -32,7 +32,8 @@ class BaseRepository {
   }
 
   update(id, data) {
-    return this.model.update(data, { where: { id } });
+    console.log("UPDATE DATE ", id, JSON.stringify(data, null, 2));
+    return this.model.update(data, { where: id });
   }
 
   delete(id) {
