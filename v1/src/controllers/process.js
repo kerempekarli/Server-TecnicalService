@@ -60,6 +60,21 @@ class ProcessController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async getProcessesWithDetailsByDeviceID(req, res) {
+    try {
+      const { deviceID } = req.params;
+
+      // Belirli bir cihaza ait işlemleri ve ilgili detayları al
+      const processesWithDetails =
+        await ProcessService.getProcessesWithDetailsByDeviceID(deviceID);
+
+      res.json(processesWithDetails);
+    } catch (error) {
+      console.log("getProcessesWithDetailsByDeviceID ", error);
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new ProcessController();

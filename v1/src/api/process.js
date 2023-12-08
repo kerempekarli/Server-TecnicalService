@@ -18,4 +18,6 @@ router.put("/:id", ProcessController.updateProcess);
 // Bir işlemi sil
 router.delete("/:id", ProcessController.deleteProcess);
 
+router.get("/device/:deviceID", ProcessController.getProcessesWithDetailsByDeviceID);
+
 module.exports = router;

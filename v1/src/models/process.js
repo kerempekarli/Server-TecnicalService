@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../loaders/sequelize");
-const { Device } = require("./");
+const { Device, ProcessDetail } = require("./");
 
 const Process = sequelize.define("Process", {
   processID: {
@@ -28,7 +28,7 @@ const Process = sequelize.define("Process", {
 
 // Define associations
 Process.hasOne(Device);
-Device.hasMany(Device);
+Device.hasMany(Process);
 
 // Inverse associations (assuming you have corresponding associations in Device and SparePart models)
 

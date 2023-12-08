@@ -40,7 +40,8 @@ const ProcessDetail = sequelize.define("ProcessDetail", {
 });
 
 // Defining associations with other tables
+
+Process.hasOne(ProcessDetail, { foreignKey: "processID" });
 ProcessDetail.belongsTo(Process, { foreignKey: "processID" });
-ProcessDetail.hasOne(SparePart, { foreignKey: "stockID" });
 
 module.exports = ProcessDetail;

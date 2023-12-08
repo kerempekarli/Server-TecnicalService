@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../loaders/sequelize"); // Assume you have a sequelize instance file with connection settings
+const processDetail = require("./processDetail");
 
 const SparePart = sequelize.define("SparePart", {
   stockID: {
@@ -30,5 +31,6 @@ const SparePart = sequelize.define("SparePart", {
     allowNull: false,
   },
 });
+processDetail.belongsTo(SparePart, { foreignKey: "stockID" });
 
 module.exports = SparePart;

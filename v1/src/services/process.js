@@ -1,10 +1,11 @@
 const BaseRepository = require("./repositories/baseRepository");
-const { Process } = require("../models");
+const { Process, ProcessDetail, SparePart } = require("../models");
 const ProcessDetailService = require("./processDetail");
 
 class ProcessService extends BaseRepository {
   constructor() {
     super(Process);
+    this.model = Process;
     this.processDetailService = ProcessDetailService;
   }
 
@@ -60,6 +61,34 @@ class ProcessService extends BaseRepository {
   async deleteProcessById(id) {
     // deleteProcess metodunu çağırarak kod tekrarını önleyelim
     return this.deleteProcess(id);
+  }
+
+  async getProcessesWithDetailsByDeviceID(deviceID) {
+    try {
+      const processesWithDetails = await this.model.findAll({
+        where: { DeviceId: deviceID },
+        include: [
+          {
+            model: ProcessDetail,
+            include: [
+              {
+                model: SparePart,
+              },
+            ],
+          },
+        ],
+      });
+
+      return processesWithDetails;
+    } catch (error) {
+      console.error(
+        "Error getting processes with details by device ID:",
+        error
+      );
+      throw new Error(
+        `Error getting processes with details by device ID: ${error.message}`
+      );
+    }
   }
 }
 
