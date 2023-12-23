@@ -31,6 +31,7 @@ const SparePart = sequelize.define("SparePart", {
     allowNull: false,
   },
 });
+
 processDetail.belongsTo(SparePart, { foreignKey: "stockID" });
 
 module.exports = SparePart;

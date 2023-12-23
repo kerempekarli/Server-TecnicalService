@@ -1,6 +1,6 @@
-const BaseRepository = require("./repositories/baseRepository");
 const { ProcessDetail } = require("../models");
 const SparePartService = require("./sparePart");
+const BaseRepository = require("./Repositories/baseRepository")
 
 class ProcessDetailService extends BaseRepository {
   constructor() {

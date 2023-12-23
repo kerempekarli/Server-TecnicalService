@@ -1,3 +1,4 @@
+// app.js
 const express = require("express");
 // const helmet = require("helmet");
 const config = require("./config/index");
@@ -23,6 +24,7 @@ const {
   Process,
   SparePart,
 } = require("./models");
+const initialize = require("./helpers/initialize");
 
 config();
 
@@ -61,10 +63,19 @@ sequelize
   })
   .then(() => {
     console.log("Database connection has been established successfully.");
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000); // Wait for 1000 milliseconds (1 second)
+    });
+  })
+  .then(() => {
+    return initialize();
   })
   .catch((error) => {
     console.error("Unable to connect to the database:", error);
   });
+// İlk admin hesabını oluştur
 
 app.listen(process.env.APP_PORT, async () => {
   console.log("Server is running on " + process.env.APP_PORT);

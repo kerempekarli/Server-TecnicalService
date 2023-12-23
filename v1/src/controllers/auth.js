@@ -39,6 +39,7 @@ class AuthController {
 
   async loginEmployee(req, res) {
     try {
+      console.log("req ", req.body);
       const { email, password } = req.body;
       console.log("email", email);
       let employee = await EmployeeService.getEmployeeByEmail({
@@ -59,6 +60,7 @@ class AuthController {
       const token = generateToken(employee); // "this" ekledik
       employee.password = null;
 
+      console.log(employee);
       res.status(200).json({ user: employee, token: token });
     } catch (error) {
       console.log("Error", error);

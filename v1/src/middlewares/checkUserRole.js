@@ -1,3 +1,6 @@
+
+// middlewares/checkuserrole.js
+
 const jwt = require("jsonwebtoken");
 
 // JWT token çözme ve rol kontrolü middleware'i

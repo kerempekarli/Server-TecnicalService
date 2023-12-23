@@ -1,6 +1,6 @@
 // services/SparePartService.js
-const BaseRepository = require("./repositories/baseRepository");
 const { SparePart } = require("../models");
+const BaseRepository = require("./Repositories/baseRepository")
 
 class SparePartService extends BaseRepository {
   constructor() {

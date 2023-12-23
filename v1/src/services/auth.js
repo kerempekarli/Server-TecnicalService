@@ -39,6 +39,7 @@ class AuthService {
   }
 
   async loginEmployee(email, password) {
+    console.log("LOGIN EMPLOYEE DATA ", email);
     const employee = await Employee.findOne({ where: { email } });
 
     if (!employee) {

@@ -4,7 +4,7 @@ const sequelize = new Sequelize({
   dialect: 'postgres',
   host: 'localhost',
   username: 'postgres',
-  password: '123456',
+  password: '123123',
   database: 'AppleRepair',
   logging: false,
 });

@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../loaders/sequelize"); // Assume you have a sequelize instance file with connection settings
+const sequelize = require("../loaders/sequelize");
 const { Process, SparePart } = require("./");
+
 const ProcessDetail = sequelize.define("ProcessDetail", {
   detailID: {
     type: DataTypes.INTEGER,
@@ -11,7 +12,7 @@ const ProcessDetail = sequelize.define("ProcessDetail", {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: "Processes", // Assuming the table name is 'Processes'
+      model: Process, // Use the actual model instance
       key: "processID",
     },
   },
@@ -19,7 +20,7 @@ const ProcessDetail = sequelize.define("ProcessDetail", {
     type: DataTypes.INTEGER,
     allowNull: true,
     references: {
-      model: "SpareParts", // Assuming the table name is 'SpareParts'
+      model: SparePart, // Use the actual model instance
       key: "stockID",
     },
   },

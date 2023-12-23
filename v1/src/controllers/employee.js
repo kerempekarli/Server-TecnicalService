@@ -36,6 +36,15 @@ class EmployeeController {
     await this.service.deleteEmployee(id);
     res.json({ message: "Employee deleted successfully" });
   }
+  async getEmployeeByEmail(req, res) {
+    const { email } = req.params;
+    try {
+      const employee = await this.service.getEmployeeByEmail(email);
+      res.json(employee);
+    } catch (error) {
+      res.status(500).json({ message: "Error getting employee by email" });
+    }
+  }
 }
 
 module.exports = new EmployeeController(EmployeeService);
