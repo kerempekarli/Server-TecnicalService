@@ -10,17 +10,17 @@ class EmployeeRepository extends BaseRepository {
 
   async getByEmail(email) {
     try {
-      console.log("Son email:", email.email);
-
+      console.log("Son email:", email);
+      const reqData = email.email;
       let data = await this.Employee.findOne({
-        where: { email: "kerempekarli@gmail.com" },
+        where: { email: reqData },
       });
       console.log("DATA SON", data);
 
       return data;
     } catch (error) {
       console.error("getByEmail hatası:", error);
-      throw error;
+      // throw error;
     }
   }
 }

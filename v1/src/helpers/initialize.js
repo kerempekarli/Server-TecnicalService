@@ -12,17 +12,17 @@ async function initializeApp() {
 
     // İlk admin hesabını ekleyin
     const existingAdmin = await EmployeeService.getEmployeeByEmail(
-      "kerempekarli@gmail.com"
+      "admin@gmail.com"
     );
 
     if (!existingAdmin) {
       const employeeData = {
         firstName: "Kerem",
         lastName: "Pekarlı",
-        email: "kerempekarli@gmail.com",
+        email: "admin@gmail.com",
         phoneNumber: "123456789",
         password: "123123", // Şifreyi güvenli bir şekilde hashleme işlemi AuthService.registerEmployee içinde yapılır
-        role: "staff", // Varsayılan olarak staff atanır, isteğe bağlı olarak role ekleyebilirsiniz
+        role: "admin", // Varsayılan olarak staff atanır, isteğe bağlı olarak role ekleyebilirsiniz
         // Diğer özellikleri ekleyebilirsiniz
       };
 
