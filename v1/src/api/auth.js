@@ -10,5 +10,6 @@ router.post(
   AuthController.registerEmployee.bind(AuthController)
 );
 router.post("/login/employee", AuthController.loginEmployee);
+router.put("/change-password/employee", AuthController.changePasswordEmployee);
 
 module.exports = router;

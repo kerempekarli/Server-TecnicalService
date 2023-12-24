@@ -32,8 +32,12 @@ class BaseRepository {
   }
 
   update(id, data) {
-    console.log("UPDATE DATE ", id, JSON.stringify(data, null, 2));
-    return this.model.update(data, { where: id });
+    console.log(
+      `UPDATE REPOSITORY METHOD ${id} ${data.password} ${this.model}`
+    );
+
+    // Güncelleme işlemi için where parametresini doğru belirtelim
+    return this.model.update(data, { where: { id } });
   }
 
   delete(id) {

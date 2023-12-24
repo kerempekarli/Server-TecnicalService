@@ -130,6 +130,23 @@ class DeviceController {
       next(error);
     }
   }
+  async getUnfinishedDevicesWithEmployeeOne(req, res) {
+    try {
+      const options = {
+        where: {
+          status: { [Op.ne]: "completed" }, // Tamamlanmamış cihazlar
+          employeeId: req.params.usedId, // EmployeeId 1 olanlar
+        },
+      };
+
+      const devices = await DeviceService.getAll(options);
+
+      res.status(200).json(devices);
+    } catch (error) {
+      console.error("Error fetching devices:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
 }
 
 module.exports = new DeviceController();

@@ -15,6 +15,10 @@ router.get(
 
 // GET device by ID
 router.get("/:id", DeviceController.getDeviceById.bind(DeviceController));
+router.get(
+  "/unfinished-with-employee-one/:userId",
+  DeviceController.getUnfinishedDevicesWithEmployeeOne.bind(DeviceController)
+);
 
 // POST create new device
 router.post("/", DeviceController.createDevice.bind(DeviceController));
